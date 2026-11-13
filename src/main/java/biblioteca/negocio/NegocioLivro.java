@@ -67,12 +67,12 @@ public class NegocioLivro {
         livro.setTitulo(novoTitulo.trim());
     }
 
-    public void alterarCategoria(int id, Categoria novCategoria){
-        if(novCategoria == null){
+    public void alterarCategoria(int id, Categoria novaCategoria){
+        if(novaCategoria == null){
             throw new IllegalArgumentException("A categoria é obrigatória.");
         }
         Livro livro = buscar(id);
-        livro.setCategoria(novCategoria);
+        livro.setCategoria(novaCategoria);
     }
 
     public void remover(int id){

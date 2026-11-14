@@ -31,15 +31,16 @@ public class Main {
             System.out.println("6 - Listar livros");
             System.out.println("7 - Listar livros de um autor");
             System.out.println("8 - Alterar título do livro");
-            System.out.println("9 - Remover livro");
+            System.out.println("9 - Alterar categoria do livro");
+            System.out.println("10 - Remover livro");
             System.out.println("0 - Sair");
             System.out.print("Escolha: ");
 
             try{
                 opcao = Integer.parseInt(teclado.nextLine());
 
-                if(opcao < 0 || opcao > 9){
-                    System.out.println("Opção inválida. Escolha de 0 a 9.");
+                if(opcao < 0 || opcao > 10){
+                    System.out.println("Opção inválida. Escolha de 0 a 10.");
                     continue;
                 }
 
@@ -149,7 +150,27 @@ public class Main {
                         System.out.println("Título alterado.");
                         break;
 
-                    case 9: 
+                    case 9:
+                        System.out.println("Id do livro: ");
+                        int idLivroAlterarCategoria = Integer.parseInt(teclado.nextLine());
+
+                        Categoria[] categoriasLivro = Categoria.values();
+                        for(int i = 0; i < categoriasLivro.length; i++){
+                            System.out.println((i+1) + " - " + categoriasLivro[i]);
+                        }
+                        System.out.println("Categoria: ");
+                        int numCategoria = Integer.parseInt(teclado.nextLine());
+                        if(numCategoria < 1 || numCategoria > categoriasLivro.length){
+                            System.out.println("Categoria inválida.");
+                            break;
+                        }
+
+                        Categoria categoriaC9 = categoriasLivro[ numCategoria - 1];
+                        fachada.alterarCategoriaLivro(idLivroAlterarCategoria, categoriaC9);
+                        System.out.println("Categoria alterada.");
+                        break;
+
+                    case 10: 
                         System.out.println("Id do livro: ");
                         int idLivroRemover = Integer.parseInt(teclado.nextLine());
 

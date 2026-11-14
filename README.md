@@ -3,7 +3,7 @@
 Sistema de biblioteca em Java, construído em etapas — do terminal à nuvem.
 
 ## Etapas
-- [ ] Etapa 1 — POO em camadas (modelo, persistência, negócio, fachada)
+- [x] Etapa 1 — POO em camadas (modelo, persistência, negócio, fachada)
 - [ ] Etapa 2 — Usuário + Validador (CPF, e-mail, senha e data) com testes
 - [ ] Etapa 3 — Banco de dados MySQL
 - [ ] Etapa 4 — Regras de negócio

@@ -39,7 +39,7 @@ public class NegocioLivro {
             throw new IllegalArgumentException("Autor com id "
                                                  + idAutor + " não encontrado.");
         }
-        int id = repositorioAutor.gerarId();
+        int id = repositorioLivro.gerarId();
         Livro livro = new Livro(id, titulo.trim(), categoria, anoPublicacao, autor);
         repositorioLivro.salvar(livro);
         return livro;
@@ -48,7 +48,7 @@ public class NegocioLivro {
     public Livro buscar(int id){
         Livro livro = repositorioLivro.buscarPorId(id);
         if(livro == null){
-            throw new IllegalArgumentException("Livro com id " + id + "não encontrado.");
+            throw new IllegalArgumentException("Livro com id " + id + " não encontrado.");
         }
         return livro;
     }

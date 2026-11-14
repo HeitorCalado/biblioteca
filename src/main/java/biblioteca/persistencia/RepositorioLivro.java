@@ -34,7 +34,7 @@ public class RepositorioLivro {
                 encontrados.add(livro);
             }
         }
-        return null;
+        return encontrados;
     }
 
     public List<Livro> listarTodos(){

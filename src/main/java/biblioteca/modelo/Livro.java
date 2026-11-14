@@ -35,11 +35,11 @@ public class Livro{
         return autor;
     }
 
-    public void setTitulo(){
+    public void setTitulo(String titulo){
         this.titulo = titulo;
     }
 
-    public void setCategoria(){
+    public void setCategoria(Categoria categoria){
         this.categoria = categoria;
     }
 

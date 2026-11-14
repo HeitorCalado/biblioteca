@@ -53,7 +53,7 @@ public class NegocioAutor{
     }
 
     public void alterarEstilo(int id, String novoEstilo){
-        validarTexto(novoEstilo, " O estilo do autor");
+        validarTexto(novoEstilo, "O estilo do autor");
         Autor autor = buscar(id);
         autor.setEstilo(novoEstilo.trim());
     }

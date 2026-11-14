@@ -64,7 +64,7 @@ public class Fachada {
         return negocioLivro.listar();
     }
 
-    public List<Livro> listarLivroPorAutor(int id){
+    public List<Livro> listarLivrosPorAutor(int id){
         return negocioLivro.listarPorAutor(id);
     }
 

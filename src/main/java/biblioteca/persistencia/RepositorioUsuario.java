@@ -29,7 +29,7 @@ public class RepositorioUsuario {
 
     public Usuario buscarPorCpf(String cpf){
         for(Usuario usuario : usuarios){
-            if(usuario.getCpf() == cpf){
+            if(usuario.getCpf().equals(cpf)){
                 return usuario;
             }
         }
@@ -38,7 +38,7 @@ public class RepositorioUsuario {
 
     public Usuario buscarPorEmail(String email){
         for(Usuario usuario : usuarios){
-            if(usuario.getEmail() == email){
+            if(usuario.getEmail().equalsIgnoreCase(email)){
                 return usuario;
             }
         }

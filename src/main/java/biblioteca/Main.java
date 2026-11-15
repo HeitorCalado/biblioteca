@@ -4,9 +4,9 @@ import biblioteca.fachada.Fachada;
 import biblioteca.modelo.Autor;
 import biblioteca.modelo.Categoria;
 import biblioteca.modelo.Livro;
+import biblioteca.validacao.Validador;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.List;
@@ -16,7 +16,6 @@ public class Main {
     public static void main(String [] args){
         Scanner teclado = new Scanner(System.in);
         Fachada fachada = new Fachada();
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         int opcao = -1;
 
@@ -49,7 +48,7 @@ public class Main {
                         System.out.println("Nome: ");
                         String nome = teclado.nextLine();
                         System.out.println("Data de nascimento (dd/mm/aaaa): ");
-                        LocalDate nascimento = LocalDate.parse(teclado.nextLine(), formato);
+                        LocalDate nascimento = Validador.converterData(teclado.nextLine());
                         System.out.println("Estilo: ");
                         String estilo = teclado.nextLine();
 

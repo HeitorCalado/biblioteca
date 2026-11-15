@@ -28,6 +28,21 @@ class ValidadorTest {
     }
 
     @Test
+    void cpfNulo(){
+        assertFalse(Validador.cpfValido(null));
+    }
+
+    @Test
+    void cpfComTamanhoErrado(){
+        assertFalse(Validador.cpfValido("123"));
+    }
+
+    @Test
+    void cpfSemPontuacao(){
+        assertTrue(Validador.cpfValido("52998224725"));
+    }
+
+    @Test
     void emailValido(){
         assertTrue(Validador.emailValido("heitor@gmail.com"));
     }
@@ -40,6 +55,21 @@ class ValidadorTest {
     @Test
     void emailSemPontoNoDominio(){
         assertFalse(Validador.emailValido("heitor@gmail"));
+    }
+
+    @Test
+    void emailNulo(){
+        assertFalse(Validador.emailValido(null));
+    }
+
+    @Test
+    void emailComEspaco(){
+        assertFalse(Validador.emailValido("heitor calado@gmail.com"));
+    }
+
+    @Test
+    void emailComDominioBrasileiro(){
+        assertTrue(Validador.emailValido("heitor@ufape.edu.br"));
     }
 
     @Test
@@ -57,6 +87,26 @@ class ValidadorTest {
         assertFalse(Validador.senhaForte("Senha1234"));
     }
 
+    @Test 
+    void senhaNula(){
+        assertFalse(Validador.senhaForte(null));
+    }
+
+    @Test
+    void senhaSemMaiuscula(){
+        assertFalse(Validador.senhaForte("senha@123"));
+    }
+
+    @Test 
+    void senhaSemMinuscula(){
+        assertFalse(Validador.senhaForte("SENHA@123"));
+    }
+
+    @Test 
+    void senhaSemNumero(){
+        assertFalse(Validador.senhaForte("Senha@abc"));
+    }
+
     @Test
     void dataValida(){
         assertEquals(LocalDate.of(2024,2,29), Validador.converterData("29/02/2024"));
@@ -70,5 +120,10 @@ class ValidadorTest {
     @Test
     void dataNoFormatoErrado(){
         assertThrows(DateTimeParseException.class, () -> Validador.converterData("2024-02-29"));
+    }
+
+    @Test 
+    void dataBissextaEmAnoNormal(){
+        assertThrows(DateTimeParseException.class, () -> Validador.converterData("29/02/2025"));
     }
 }

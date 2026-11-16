@@ -4,6 +4,7 @@ import biblioteca.fachada.Fachada;
 import biblioteca.modelo.Autor;
 import biblioteca.modelo.Categoria;
 import biblioteca.modelo.Livro;
+import biblioteca.modelo.Usuario;
 import biblioteca.validacao.Validador;
 
 import java.time.LocalDate;
@@ -32,14 +33,20 @@ public class Main {
             System.out.println("8 - Alterar título do livro");
             System.out.println("9 - Alterar categoria do livro");
             System.out.println("10 - Remover livro");
+            System.out.println("11 - Cadastrar usuário");
+            System.out.println("12 - Listar usuários");
+            System.out.println("13 - Alterar nome do usuário");
+            System.out.println("14 - Alterar e-mail do usuário");
+            System.out.println("15 - Alterar senha do usuário");
+            System.out.println("16 - Remover usuário");
             System.out.println("0 - Sair");
             System.out.print("Escolha: ");
 
             try{
                 opcao = Integer.parseInt(teclado.nextLine());
 
-                if(opcao < 0 || opcao > 10){
-                    System.out.println("Opção inválida. Escolha de 0 a 10.");
+                if(opcao < 0 || opcao > 16){
+                    System.out.println("Opção inválida. Escolha de 0 a 16.");
                     continue;
                 }
 
@@ -175,6 +182,69 @@ public class Main {
 
                         fachada.removerLivro(idLivroRemover);
                         System.out.println("Livro removido.");
+                        break;
+
+                    case 11:
+                        System.out.println("Nome: ");
+                        String nomeUsuario = teclado.nextLine();
+                        System.out.println("CPF: ");
+                        String cpf = teclado.nextLine();
+                        System.out.println("E-mail: ");
+                        String email = teclado.nextLine();
+                        System.out.println("Senha: ");
+                        String senha = teclado.nextLine();
+
+                        Usuario usuario = fachada.cadastrarUsuario(nomeUsuario, cpf, email, senha);
+                        System.out.println("Cadastrado: " + usuario);
+                        break;
+
+                    case 12:
+                        List<Usuario> usuarios = fachada.listarUsuarios();
+                        if(usuarios.isEmpty()){
+                            System.out.println("Nenhum usuário cadastrado.");
+                        } else{
+                            for(Usuario u : usuarios){
+                                System.out.println(u);
+                            }
+                        }
+                        break;
+
+                    case 13:
+                        System.out.println("Id do usuário: ");
+                        int idUsuarioNome = Integer.parseInt(teclado.nextLine());
+                        System.out.println("Novo nome: ");
+                        String novoNomeUsuario = teclado.nextLine();
+
+                        fachada.alterarNomeUsuario(idUsuarioNome, novoNomeUsuario);
+                        System.out.println("Nome alterado.");
+                        break;
+
+                    case 14:
+                        System.out.println("Id do usuário: ");
+                        int idUsuarioEmail = Integer.parseInt(teclado.nextLine());
+                        System.out.println("Novo e-mail: ");
+                        String novoEmail = teclado.nextLine();
+
+                        fachada.alterarEmailUsuario(idUsuarioEmail, novoEmail);
+                        System.out.println("E-mail alterado.");
+                        break;
+
+                    case 15:
+                        System.out.println("Id do usuário: ");
+                        int idUsuarioSenha = Integer.parseInt(teclado.nextLine());
+                        System.out.println("Nova senha: ");
+                        String novaSenha = teclado.nextLine();
+
+                        fachada.alterarSenhaUsuario(idUsuarioSenha, novaSenha);
+                        System.out.println("Senha alterada.");
+                        break;
+
+                    case 16:
+                        System.out.println("Id do usuário: ");
+                        int idUsuarioRemover = Integer.parseInt(teclado.nextLine());
+
+                        fachada.removerUsuario(idUsuarioRemover);
+                        System.out.println("Usuário removido.");
                         break;
 
                     case 0:

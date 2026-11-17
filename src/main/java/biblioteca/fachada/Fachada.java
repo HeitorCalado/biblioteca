@@ -3,10 +3,13 @@ package biblioteca.fachada;
 import biblioteca.modelo.Autor;
 import biblioteca.modelo.Categoria;
 import biblioteca.modelo.Livro;
+import biblioteca.modelo.Usuario;
 import biblioteca.negocio.NegocioAutor;
 import biblioteca.negocio.NegocioLivro;
+import biblioteca.negocio.NegocioUsuario;
 import biblioteca.persistencia.RepositorioAutor;
 import biblioteca.persistencia.RepositorioLivro;
+import biblioteca.persistencia.RepositorioUsuario;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,13 +18,16 @@ public class Fachada {
     
     private final NegocioAutor negocioAutor;
     private final NegocioLivro negocioLivro;
+    private final NegocioUsuario negocioUsuario;
     
     public Fachada(){
         RepositorioAutor repositorioAutor = new RepositorioAutor();
         RepositorioLivro repositorioLivro = new RepositorioLivro();
+        RepositorioUsuario repositorioUsuario = new RepositorioUsuario();
 
         this.negocioAutor = new NegocioAutor(repositorioAutor, repositorioLivro);
         this.negocioLivro = new NegocioLivro(repositorioLivro, repositorioAutor);
+        this.negocioUsuario = new NegocioUsuario(repositorioUsuario);
     }
 
     // ===== AUTORES =======
@@ -78,5 +84,35 @@ public class Fachada {
 
     public void removerLivro(int id){
         negocioLivro.remover(id);
+    }
+
+    // ====== USUARIOS ======
+
+    public Usuario cadastrarUsuario(String nome, String cpf, String email, String senha){
+        return negocioUsuario.cadastrar(nome, cpf, email, senha);
+    }
+
+    public Usuario buscarUsuario(int id){
+        return negocioUsuario.buscar(id);
+    }
+
+    public List<Usuario> listarUsuarios(){
+        return negocioUsuario.listar();
+    }
+
+    public void alterarNomeUsuario(int id, String novoNome){
+        negocioUsuario.alterarNome(id, novoNome);
+    }
+
+    public void alterarEmailUsuario(int id, String novoEmail){
+        negocioUsuario.alterarEmail(id, novoEmail);
+    }
+
+    public void alterarSenhaUsuario(int id, String novaSenha){
+        negocioUsuario.alterarSenha(id, novaSenha);
+    }
+
+    public void removerUsuario(int id){
+        negocioUsuario.remover(id);
     }
 }
